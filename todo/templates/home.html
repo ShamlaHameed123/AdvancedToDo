@@ -18,7 +18,7 @@
         <thead>
             <tr>
                 <th scope="col">Title</th>
-                <th scope="col">Content</th>
+                <th scope="col">Description</th>
                 <th scope="col">Completed</th>
 				<th scope="col">Due Date</th>
 				<th scope="col">Priority</th>
@@ -29,7 +29,7 @@
             {% for Task in Tasks %}
             <tr>
                 <td>{{ Task.title }}</td>
-                <td>{{ Task.content }}</td>
+                <td>{{ Task.description }}</td>
                 <td>{{ Task.completed }}</td>
 				<td>{{ Task.due_date }}</td>
 				<td>{{ Task.get_priority_display }}</td>

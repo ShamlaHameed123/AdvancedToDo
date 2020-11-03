@@ -48,7 +48,7 @@ def TaskCreate(request):
 def TaskUpdate(request, id):
     task = Task.objects.get(id=id)
     form = TaskForm(initial={'title': task.title,
-                             'content': task.content,
+                             'description': task.description,
                              'completed': task.completed,
                              'due_date': task.due_date,
                              'priority': task.priority})
