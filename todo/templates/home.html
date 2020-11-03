@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+
+<div class="card-body" align="center">
+	<div class="sidenav">
+		<link rel="stylesheet" href="{% static 'css/side.css' %}">
+
+		<a href="{% url 'Task-list' 'low' %}"><img src="{% static 'images/low.png' %}" width="50" height="50" alt="Low Priority"><figcaption>Low</figcaption></a>
+		<a href="{% url 'Task-list' 'medium' %}"><img src="{% static 'images/medium.png' %}" width="50" height="50" alt="Medium Priority"><figcaption>Medium</figcaption></a>
+		<a href="{% url 'Task-list' 'high' %}"><img src="{% static 'images/high.png' %}" width="50" height="50" alt="High Priority"><figcaption>High</figcaption></a>
+	    <a href="{% url 'Task-list' %}"><b> All Tasks</b></a>
+	</div>
+
+    <h4><b>Task List</b></h4></br>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Title</th>
+                <th scope="col">Content</th>
+                <th scope="col">Completed</th>
+				<th scope="col">Due Date</th>
+				<th scope="col">Priority</th>
+				<th scope="col">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for Task in Tasks %}
+            <tr>
+                <td>{{ Task.title }}</td>
+                <td>{{ Task.content }}</td>
+                <td>{{ Task.completed }}</td>
+				<td>{{ Task.due_date }}</td>
+				<td>{{ Task.get_priority_display }}</td>
+
+                <td><a type="button" class="btn btn-warning" href="/Task-update/{{ Task.id }}">Update</a>
+                    <a type="button" class="btn btn-danger" href="/Task-delete/{{ Task.id }}">Delete</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <a type="button" class="btn btn-success" href="{%url 'Task-create' %}">Create</a>
+</div>
+{% endblock %}

@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="card-body" align="center">
+    <h4>Update Task</h4></br>
+    <form method="post">
+        {% csrf_token %}
+        {{form.as_p}}
+        <a type="button" class="btn btn-danger" href="{%url 'Task-list' %}">Cancel</a>
+        <button type="submit" class="btn btn-success">Update</button>
+    </form>
+</div>
+{% endblock %}
