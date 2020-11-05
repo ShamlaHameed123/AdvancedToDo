@@ -3,15 +3,13 @@ from django.contrib.auth import login, authenticate
 
 # Create your views here.
 from django.shortcuts import render, redirect
+from django.contrib.auth.decorators import login_required
 from .models import Task
 from .forms import TaskForm, SignUpForm
 
 
 # Create your views here.
-def index(request):
-    return redirect('Task-list')
-
-
+@login_required
 def TaskList(request, priority=None):
     if priority is not None:
         if priority == "low":
@@ -24,7 +22,7 @@ def TaskList(request, priority=None):
         Tasks = Task.objects.filter(user=request.user)
     return render(request, "home.html", {'Tasks': Tasks})
 
-
+@login_required
 def TaskCreate(request):
     if request.method == "POST":
         form = TaskForm(request.POST)
@@ -45,6 +43,7 @@ def TaskCreate(request):
     return render(request, 'create.html', {'form': form})
 
 
+@login_required
 def TaskUpdate(request, id):
     task = Task.objects.get(id=id)
     form = TaskForm(initial={'title': task.title,
@@ -64,6 +63,7 @@ def TaskUpdate(request, id):
     return render(request, 'update.html', {'form': form})
 
 
+@login_required
 def TaskDelete(request, id):
     task = Task.objects.get(id=id)
     try:

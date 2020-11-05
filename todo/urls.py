@@ -4,7 +4,6 @@ from django.contrib.auth import views as auth_views
 
 
 urlpatterns = [
-    path('', views.index, name='index'),
     path('Task-list', views.TaskList, name='Task-list'),
     path('Task-list/(?P<priority>[a-z]+)$', views.TaskList, name='Task-list'),
     path('Task-create', views.TaskCreate, name='Task-create'),
